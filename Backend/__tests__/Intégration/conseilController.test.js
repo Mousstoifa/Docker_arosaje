@@ -20,8 +20,8 @@ jest.mock('../../models/conseilModel');
 describe('Conseil Controller', () => {
 
     describe('POST /conseils', () => {
-        it('should create a new conseil and return it', async () => {
-            const newConseil = { title: 'Conseil 1', content: 'Content of Conseil 1' };
+        it('Création nouveau conseil', async () => {
+            const newConseil = { title: 'Conseil 1', content: 'Super conseil' };
             const createdConseil = { id: 1, ...newConseil };
 
             Conseil.createConseil.mockImplementation((conseil, callback) => {
@@ -37,25 +37,25 @@ describe('Conseil Controller', () => {
             expect(Conseil.createConseil).toHaveBeenCalledWith(newConseil, expect.any(Function));
         });
 
-        it('should return a 500 error if createConseil fails', async () => {
+        it('Erreur lors de la création du conseil', async () => {
             Conseil.createConseil.mockImplementation((conseil, callback) => {
-                callback(new Error('Creation error'));
+                callback(new Error('Erreur lors de la création du conseil'));
             });
 
             const res = await request(app)
                 .post('/conseils')
-                .send({ title: 'Conseil 1', content: 'Content of Conseil 1' })
+                .send({ title: 'Conseil 1', content: 'Conseil 1' })
                 .expect(500);
 
-            expect(res.body).toEqual({ error: 'Creation error' });
+            expect(res.body).toEqual({ error: 'Erreur lors de la création du conseil' });
         });
     });
 
     describe('GET /conseils', () => {
-        it('should return all conseils', async () => {
+        it('Récupérer tous les conseils', async () => {
             const conseils = [
-                { id: 1, title: 'Conseil 1', content: 'Content of Conseil 1' },
-                { id: 2, title: 'Conseil 2', content: 'Content of Conseil 2' }
+                { id: 1, title: 'Conseil 1', content: 'Conseil 1' },
+                { id: 2, title: 'Conseil 2', content: 'Conseil 2' }
             ];
 
             Conseil.getAllConseils.mockImplementation((callback) => {
@@ -70,21 +70,21 @@ describe('Conseil Controller', () => {
             expect(Conseil.getAllConseils).toHaveBeenCalledWith(expect.any(Function));
         });
 
-        it('should return a 500 error if getAllConseils fails', async () => {
+        it('Erreur lors de la récupération', async () => {
             Conseil.getAllConseils.mockImplementation((callback) => {
-                callback(new Error('Fetch error'));
+                callback(new Error('Erreur lors de la récupération'));
             });
 
             const res = await request(app)
                 .get('/conseils')
                 .expect(500);
 
-            expect(res.body).toEqual({ error: 'Fetch error' });
+            expect(res.body).toEqual({ error: 'Erreur lors de la récupération' });
         });
     });
 
     describe('DELETE /conseils/:id', () => {
-        it('should delete a conseil and return 204 status', async () => {
+        it('Supression du conseil', async () => {
             const conseilId = 1;
 
             Conseil.deleteConseil.mockImplementation((id, callback) => {
@@ -99,25 +99,25 @@ describe('Conseil Controller', () => {
             expect(Conseil.deleteConseil).toHaveBeenCalledWith(conseilId.toString(), expect.any(Function));
         });
 
-        it('should return a 500 error if deleteConseil fails', async () => {
+        it('Erreur lors de la suppression du conseil', async () => {
             const conseilId = 1;
 
             Conseil.deleteConseil.mockImplementation((id, callback) => {
-                callback(new Error('Delete error'));
+                callback(new Error('Erreur lors de la suppression du conseil'));
             });
 
             const res = await request(app)
                 .delete(`/conseils/${conseilId}`)
                 .expect(500);
 
-            expect(res.body).toEqual({ error: 'Delete error' });
+            expect(res.body).toEqual({ error: 'Erreur lors de la suppression du conseil' });
         });
     });
 
     describe('PUT /conseils/:id', () => {
-        it('should update a conseil and return a success message', async () => {
+        it('Mise à jour de conseil', async () => {
             const conseilId = 1;
-            const updatedConseil = { title: 'Updated Title', content: 'Updated Content' };
+            const updatedConseil = { title: 'Updated Conseil', content: 'Très bon conseil' };
 
             Conseil.updateConseil.mockImplementation((id, conseil, callback) => {
                 callback(null);
@@ -132,12 +132,12 @@ describe('Conseil Controller', () => {
             expect(Conseil.updateConseil).toHaveBeenCalledWith(conseilId.toString(), updatedConseil, expect.any(Function));
         });
 
-        it('should return a 500 error if updateConseil fails', async () => {
+        it('Erreur lors de la mise à jour du conseil', async () => {
             const conseilId = 1;
-            const updatedConseil = { title: 'Updated Title', content: 'Updated Content' };
+            const updatedConseil = { title: 'Updated Title', content: 'Très bon conseil' };
 
             Conseil.updateConseil.mockImplementation((id, conseil, callback) => {
-                callback(new Error('Update error'));
+                callback(new Error('Erreur lors de la mise à jour du conseil'));
             });
 
             const res = await request(app)
@@ -145,7 +145,7 @@ describe('Conseil Controller', () => {
                 .send(updatedConseil)
                 .expect(500);
 
-            expect(res.body).toEqual({ error: 'Update error' });
+            expect(res.body).toEqual({ error: 'Erreur lors de la mise à jour du conseil' });
         });
     });
 

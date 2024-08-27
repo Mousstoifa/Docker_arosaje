@@ -10,7 +10,7 @@ jest.mock('bcrypt');
 jest.mock('../../models/authModel');
 jest.mock('../../utils/jwt')
 
-describe('Tests de la fonction signup', () => {
+describe('Test de la fonction signup', () => {
     let req;
     let res;
     beforeEach(() => {
