@@ -27,4 +27,3 @@ jobs:
       run: npm ci --legacy-peer-deps
     - name: execution des tests
       run: npm run test --if-present
-    
