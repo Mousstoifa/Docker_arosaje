@@ -98,7 +98,7 @@ describe('Auth Controller', () => {
             expect(generateToken).toHaveBeenCalledWith(foundUser.Code_Utilisateurs);
         });
 
-        it('Email ou mot de passe incorrect', async () => {
+        it('Utilisateur non trouvé', async () => {
             const user = {
                 email: 'test@gmail.com',
                 password: '123'
@@ -116,7 +116,7 @@ describe('Auth Controller', () => {
             expect(res.body).toEqual({ error: 'Email ou mot de passe incorrect' });
         });
 
-        it('should return a 400 error if the password is incorrect', async () => {
+        it('Mot de passe incorrect', async () => {
             const user = {
                 email: 'test@gmail.com',
                 password: '123'
@@ -143,7 +143,7 @@ describe('Auth Controller', () => {
     });
 
     describe('Déconnexion', () => {
-        it('should return a success message', async () => {
+        it('Déconnexion réussie', async () => {
             const res = await request(app)
                 .post('/logout')
                 .expect(200);
