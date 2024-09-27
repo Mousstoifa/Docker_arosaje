@@ -5,6 +5,7 @@ import Header from '../components/header';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ConversationItem from '../components/ConversationItem';
 //import { IPV4 } from '../Backend/config/config';
+import 'dotenv/config';
 
 export default function Messages() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -21,7 +22,7 @@ export default function Messages() {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const response = await fetch(`http://172.17.74.1:3000/messages/${ownerId}/${annonceId}`);
+        const response = await fetch(`http://${process.env.EXPO_PUBLIC_API_KEY_IPV4}3000/messages/${ownerId}/${annonceId}`);
         const data = await response.json();
         setMessages(data);
         setIsLoading(false);

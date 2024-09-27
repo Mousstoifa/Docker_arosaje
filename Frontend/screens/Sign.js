@@ -3,6 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Platform, ScrollVi
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 //import { IPV4 } = require('../../Backend/config/config');
+import 'dotenv/config';
 
 // Remplacez la clé botaniste ici
 const BOTANIST_SECRET_KEY = '2468';
@@ -96,7 +97,7 @@ export default function Sign() {
         }
 
         try {
-            const response = await fetch(`http://172.17.74.1:3000/auth/signup`, {
+            const response = await fetch(`http://${process.env.EXPO_PUBLIC_API_KEY_IPV4}3000/auth/signup`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -204,7 +204,7 @@ const Formulaire = () => {
       console.log('Données soumises:', formData);
       console.log('Utilisation du token:', token);
 
-      const response = await fetch(`http://172.17.74.1:3000/annonces/addannonce`, {
+      const response = await fetch(`http://${process.env.EXPO_PUBLIC_API_KEY_IPV4}3000/annonces/addannonce`, {
         method: 'POST',
         headers: {
           'Content-Type': 'multipart/form-data',

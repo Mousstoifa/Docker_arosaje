@@ -3,13 +3,14 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 //import { IPV4 } from '../Backend/config/config';
 import moment from 'moment';
 import 'moment/locale/fr';
+import 'dotenv/config';
 
 moment.locale('fr');
 
 const Card = ({ plantImage, plantName, location, userName, userImage, status, datePoste }) => {
     return (
         <View style={styles.card}>
-            <Image source={{ uri: `http://172.17.74.1:3000/annonces/image/${plantImage}` }} style={styles.plantImage} />
+            <Image source={{ uri: `http://${process.env.EXPO_PUBLIC_API_KEY_IPV4}3000/annonces/image/${plantImage}` }} style={styles.plantImage} />
             <View style={styles.textContainer}>
                 <Text style={styles.plantName}>{plantName}</Text>
                 <Text style={styles.location}>{location}</Text>

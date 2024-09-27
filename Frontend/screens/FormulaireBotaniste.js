@@ -66,7 +66,7 @@ const FormulaireBotaniste = () => {
       console.log('Données soumises:', data);
 
       const response = route.params.conseil
-        ? await fetch(`http://172.17.74.1:3000/conseils/update/${route.params.conseil.Code_Conseils}`, {
+        ? await fetch(`http://${process.env.EXPO_PUBLIC_API_KEY_IPV4}3000/conseils/update/${route.params.conseil.Code_Conseils}`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ const FormulaireBotaniste = () => {
             },
             body: JSON.stringify(data),
           })
-        : await fetch(`http://172.17.74.1:3000/conseils/create`, {
+        : await fetch(`http://${process.env.EXPO_PUBLIC_API_KEY_IPV4}3000/conseils/create`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

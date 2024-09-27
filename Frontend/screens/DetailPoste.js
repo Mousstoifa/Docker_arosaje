@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Animated } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 //import { IPV4 } from '../Backend/config/config';
+import 'dotenv/config';
 
 const DetailPoste = ({ route }) => {
   const { annonce } = route.params;
@@ -42,7 +43,7 @@ const DetailPoste = ({ route }) => {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.scrollContent}>
       <View style={styles.imageContainer}>
-        <Image source={{ uri: `http://172.17.74.1:3000/annonces/image/${annonce.photo}` }} style={styles.image} />
+        <Image source={{ uri: `http://${process.env.EXPO_PUBLIC_API_KEY_IPV4}3000/annonces/image/${annonce.photo}` }} style={styles.image} />
       </View>
       <View style={styles.detailsContainer}>
         <Text style={styles.title}>🌿 {annonce.titre}</Text>

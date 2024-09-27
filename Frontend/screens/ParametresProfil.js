@@ -7,6 +7,7 @@ import * as FileSystem from 'expo-file-system';
 import { manipulateAsync, SaveFormat } from 'expo-image-manipulator';
 
 //import { IPV4 } = require('../Backend/config/config');
+import 'dotenv/config';
 
 const ParametresProfil = () => {
   const [currentPassword, setCurrentPassword] = useState('');
@@ -40,7 +41,7 @@ const ParametresProfil = () => {
 
   const fetchProfilePic = async (token) => {
     try {
-      const response = await fetch(`http://172.17.74.1:3000/user/profile-pic`, {
+      const response = await fetch(`http://${process.env.EXPO_PUBLIC_API_KEY_IPV4}3000/user/profile-pic`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -79,7 +80,7 @@ const ParametresProfil = () => {
     }
 
     try {
-      const response = await fetch(`http://172.17.74.1:3000/user/verify-password`, {
+      const response = await fetch(`http://${process.env.EXPO_PUBLIC_API_KEY_IPV4}3000/user/verify-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -117,7 +118,7 @@ const ParametresProfil = () => {
     }
 
     try {
-      const response = await fetch(`http://172.17.74.1:3000/user/change-password`, {
+      const response = await fetch(`http://${process.env.EXPO_PUBLIC_API_KEY_IPV4}3000/user/change-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -158,7 +159,7 @@ const ParametresProfil = () => {
     }
 
     try {
-      const response = await fetch(`http://172.17.74.1:3000/user/delete-account`, {
+      const response = await fetch(`http://${process.env.EXPO_PUBLIC_API_KEY_IPV4}3000/user/delete-account`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -248,7 +249,7 @@ const ParametresProfil = () => {
         type: 'image/webp',
       });
 
-      const response = await fetch(`http://172.17.74.1:3000/user/upload-profile-pic`, {
+      const response = await fetch(`http://${process.env.EXPO_PUBLIC_API_KEY_IPV4}3000/user/upload-profile-pic`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
